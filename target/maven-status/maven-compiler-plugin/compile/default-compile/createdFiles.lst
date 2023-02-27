@@ -1,0 +1,17 @@
+com\noirix\repository\PassengerSecondRepositoryImpl.class
+com\noirix\service\PassengerService.class
+com\noirix\repository\PassengerRepositoryImpl.class
+resourceBundle\ResourceBundleDemo1.class
+com\noirix\service\PassengerServiceImpl.class
+com\noirix\domain\Passenger.class
+com\noirix\SpringTest.class
+com\noirix\repository\PassengerRepository.class
+com\noirix\service\PassengerAggregationService.class
+com\noirix\repository\CRUDRepository.class
+com\noirix\controller\FrontController.class
+com\noirix\TestGit.class
+com\noirix\filters\CharsetFilter.class
+resourceBundle\ResourceBundleDemo2.class
+com\noirix\listeners\StartupCustomListener.class
+com\noirix\Main.class
+com\noirix\service\PassengerAggServiceImpl.class
