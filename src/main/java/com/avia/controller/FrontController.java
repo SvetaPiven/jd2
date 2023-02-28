@@ -1,9 +1,9 @@
-package com.noirix.controller;
+package com.avia.controller;
 
-import com.noirix.domain.Passenger;
-import com.noirix.repository.PassengerRepositoryImpl;
-import com.noirix.service.PassengerService;
-import com.noirix.service.PassengerServiceImpl;
+import com.avia.domain.Passenger;
+import com.avia.repository.PassengerRepositoryImpl;
+import com.avia.service.PassengerService;
+import com.avia.service.PassengerServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

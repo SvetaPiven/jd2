@@ -1,8 +1,8 @@
-package com.noirix.service;
+package com.avia.service;
 
-import com.noirix.domain.Passenger;
-import com.noirix.repository.PassengerRepository;
-import com.noirix.repository.PassengerRepositoryImpl;
+import com.avia.domain.Passenger;
+import com.avia.repository.PassengerRepository;
+import com.avia.repository.PassengerRepositoryImpl;
 
 import java.util.HashMap;
 import java.util.List;

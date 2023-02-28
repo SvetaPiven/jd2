@@ -3,6 +3,6 @@
     <title>Start!</title>
 </head>
 <body>
-    DemoApp Tomcat Application!
+    Welcome to Service Aviatickets
 </body>
 </html>

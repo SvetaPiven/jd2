@@ -1,4 +1,4 @@
-package com.noirix.filters;
+package com.avia.filters;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;

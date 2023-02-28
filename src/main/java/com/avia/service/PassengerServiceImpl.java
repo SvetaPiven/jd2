@@ -1,7 +1,9 @@
-package com.noirix.service;
+package com.avia.service;
 
-import com.noirix.domain.Passenger;
-import com.noirix.repository.PassengerRepository;
+import com.avia.domain.Passenger;
+import com.avia.repository.PassengerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,8 +12,8 @@ import java.util.List;
 //id = userServiceImpl
 public class PassengerServiceImpl implements PassengerService {
 
-//    @Autowired
-//    @Qualifier("userSecondRepositoryImpl")
+    @Autowired
+    @Qualifier("passengerSecondRepositoryImpl")
 
 //    @Inject //JSR-330
 //    @Named("userRepositoryImpl")

@@ -1,4 +1,4 @@
-package com.noirix.service;
+package com.avia.service;
 
 import java.util.Map;
 

@@ -1,4 +1,4 @@
-package com.noirix.domain;
+package com.avia.domain;
 
 import java.sql.Timestamp;
 import java.util.Objects;

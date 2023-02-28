@@ -1,7 +1,7 @@
-package com.noirix;
+package com.avia;
 
-import com.noirix.repository.PassengerRepository;
-import com.noirix.service.PassengerService;
+import com.avia.repository.PassengerRepository;
+import com.avia.service.PassengerService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class SpringTest {

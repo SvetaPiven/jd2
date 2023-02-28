@@ -1,6 +1,6 @@
-package com.noirix.service;
+package com.avia.service;
 
-import com.noirix.domain.Passenger;
+import com.avia.domain.Passenger;
 
 import java.util.List;
 

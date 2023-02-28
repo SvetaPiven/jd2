@@ -1,15 +1,12 @@
-package com.noirix;
+package com.avia;
 
-import com.noirix.domain.Passenger;
-import com.noirix.repository.PassengerRepository;
-import com.noirix.repository.PassengerRepositoryImpl;
+import com.avia.domain.Passenger;
+import com.avia.repository.PassengerRepository;
+import com.avia.repository.PassengerRepositoryImpl;
 
 import java.util.List;
 
 public class Main {
-
-    //Ctrl+Alt+O - import optimizing
-    //Ctrl+Alt+L - formatting
 
     public static void main(String[] args) {
 

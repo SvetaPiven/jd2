@@ -1,6 +1,6 @@
-package com.noirix.repository;
+package com.avia.repository;
 
-import com.noirix.domain.Passenger;
+import com.avia.domain.Passenger;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Repository;
 
@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-//bean id=userRepositoryImpl   class=UserRepositoryImpl
-//@Component
 public class PassengerRepositoryImpl implements PassengerRepository {
 
     public static final String POSTRGES_DRIVER_NAME = "org.postgresql.Driver";
@@ -34,10 +32,6 @@ public class PassengerRepositoryImpl implements PassengerRepository {
 
     @Override
     public List<Passenger> findAll() {
-
-        /*
-         * 1) Driver Manager - getting connection from DB
-         * */
 
         final String findAllQuery = "select * from passengers order by id_pass asc";
 

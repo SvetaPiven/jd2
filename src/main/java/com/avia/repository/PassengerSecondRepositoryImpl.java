@@ -1,6 +1,6 @@
-package com.noirix.repository;
+package com.avia.repository;
 
-import com.noirix.domain.Passenger;
+import com.avia.domain.Passenger;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
