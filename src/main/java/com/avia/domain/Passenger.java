@@ -24,6 +24,20 @@ public class Passenger {
         this.isDeleted = isDeleted;
     }
 
+    public Passenger(String fullName, String personalId, Timestamp created, Timestamp changed) {
+        this.fullName = fullName;
+        this.personalId = personalId;
+        this.created = created;
+        this.changed = changed;
+    }
+
+    public Passenger(Long idPass, String fullName, String personalId, Timestamp changed) {
+        this.idPass = idPass;
+        this.fullName = fullName;
+        this.personalId = personalId;
+        this.changed = changed;
+    }
+
     public void setIdPass(Long idPass) {
         this.idPass = idPass;
     }

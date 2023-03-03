@@ -9,15 +9,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-//id = userServiceImpl
 public class PassengerServiceImpl implements PassengerService {
 
     @Autowired
     @Qualifier("passengerSecondRepositoryImpl")
-
-//    @Inject //JSR-330
-//    @Named("userRepositoryImpl")
-//    @Named("userRepositoryImpl")
 
     private final PassengerRepository passengerRepository;
 
@@ -39,7 +34,7 @@ public class PassengerServiceImpl implements PassengerService {
     @Override
     public Passenger create(Passenger object) {
         /*Validation layer*/
-        if (object.getIdPass() > 23) {
+        if (object.getIdPass() <= 101) {
             throw new RuntimeException("Something wrong!");
         }
 

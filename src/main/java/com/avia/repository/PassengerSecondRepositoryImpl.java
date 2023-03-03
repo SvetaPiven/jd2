@@ -36,6 +36,16 @@ public class PassengerSecondRepositoryImpl implements PassengerRepository {
     }
 
     @Override
+    public List<Passenger> findAllWoman() {
+        return null;
+    }
+
+    @Override
+    public List<Passenger> findFirstLetterSurname() {
+        return null;
+    }
+
+    @Override
     public void searchPassenger() {
 
     }

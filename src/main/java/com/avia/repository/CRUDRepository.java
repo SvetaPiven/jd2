@@ -13,4 +13,7 @@ public interface CRUDRepository<K, T> {
     T update(T object);
 
     void delete(K id);
+
+    List<T> findAllWoman();
+    List<T> findFirstLetterSurname();
 }
