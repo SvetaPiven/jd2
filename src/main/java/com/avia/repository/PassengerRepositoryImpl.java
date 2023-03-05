@@ -184,7 +184,7 @@ public class PassengerRepositoryImpl implements PassengerRepository {
 
     @Override
     public List<Passenger> searchPassengerCitizenBelarus() {
-        final String findLetter = "select * from passangers where personal_id like '%PB%' order by id_pass asc";
+        final String findLetter = "select * from passengers where personal_id like '%PB%' order by id_pass asc";
         List<Passenger> belarus = new ArrayList<>();
         try (Connection connection = driverService.getConnection();
              Statement statement = connection.createStatement();
