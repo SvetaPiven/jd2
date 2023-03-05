@@ -30,7 +30,6 @@ public class DocumentPassRepositoryImpl implements DocumentPassRepository {
 
     @Override
     public void delete(Long id) {
-
     }
 
     @Override

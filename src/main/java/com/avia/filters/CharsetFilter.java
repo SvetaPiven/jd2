@@ -19,7 +19,6 @@ public class CharsetFilter implements Filter {
         System.out.println("In charset filter!");
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
-
         chain.doFilter(request, response);
     }
 

@@ -27,4 +27,3 @@ public class DocumentPass {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
     }
 }
-

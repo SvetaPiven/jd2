@@ -35,7 +35,6 @@ public class PassengerServiceImpl implements PassengerService {
         if (passenger.getPersonalId().length() <= 14) {
             throw new RuntimeException("Something wrong!");
         }
-
         return passengerRepository.create(passenger);
     }
 

@@ -32,7 +32,6 @@ public class PassengerSecondRepositoryImpl implements PassengerRepository {
 
     @Override
     public void delete(Long idPass) {
-
     }
 
     @Override

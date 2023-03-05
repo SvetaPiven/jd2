@@ -1,9 +1,7 @@
 package com.avia.controller;
 
 import com.avia.domain.Passenger;
-import com.avia.repository.PassengerRepositoryImpl;
 import com.avia.service.PassengerService;
-import com.avia.service.PassengerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

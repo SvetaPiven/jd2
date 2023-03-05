@@ -18,7 +18,6 @@ import java.sql.Timestamp;
 @ToString
 @Builder
 public class Passenger {
-
     private Long idPass;
     private String fullName;
     private String personalId;

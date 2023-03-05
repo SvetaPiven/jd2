@@ -26,7 +26,6 @@ import static com.avia.repository.columns.PassengerColumns.ID_PASS;
 import static com.avia.repository.columns.PassengerColumns.IS_DELETED;
 import static com.avia.repository.columns.PassengerColumns.PERSONAL_ID;
 
-
 @Repository
 @Primary
 @RequiredArgsConstructor

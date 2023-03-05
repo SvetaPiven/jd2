@@ -37,5 +37,4 @@ class PassengerRepositoryImplTest {
 //    void getCreatePassTest() {
 //        System.out.println(passengerRepository.create());
 //    }
-
 }
