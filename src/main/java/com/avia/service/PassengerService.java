@@ -12,7 +12,7 @@ public interface PassengerService {
 
     Passenger create(Passenger object);
 
-    Passenger update(Passenger object);
+    boolean update(Passenger object);
 
-    void delete(Long idPass);
+    boolean delete(Long idPass);
 }

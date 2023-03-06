@@ -26,12 +26,13 @@ public class PassengerSecondRepositoryImpl implements PassengerRepository {
     }
 
     @Override
-    public Passenger update(Passenger object) {
-        return null;
+    public boolean update(Passenger object) {
+        return false;
     }
 
     @Override
-    public void delete(Long idPass) {
+    public boolean deleteById(Long idPass) {
+        return false;
     }
 
     @Override

@@ -13,9 +13,9 @@ public interface CRUDRepository<K, T> {
 
     T create(T object);
 
-    T update(T object);
+    boolean update(T object);
 
-    void delete(K id);
+    boolean deleteById(K id);
 
     List<T> findAllWoman();
     List<T> findFirstLetterSurname();

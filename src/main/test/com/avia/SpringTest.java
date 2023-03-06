@@ -18,8 +18,6 @@ public class SpringTest {
         PassengerService passengerService = applicationContext.getBean("passengerServiceImpl", PassengerService.class);
         PassengerAggregationService passengerAggregationService = applicationContext.getBean("passengerAggServiceImpl", PassengerAggregationService.class);
 
-        System.out.println(passengerService.findAll());
-
         Map<Long, Object> allBel = passengerAggregationService.searchPassengerCitizenBelarus();
         for(Map.Entry<Long, Object> entry: allBel.entrySet())
             System.out.println(entry.getKey() + " - " + entry.getValue());
@@ -38,11 +36,11 @@ public class SpringTest {
                 .isDeleted(null).build()));
 
         System.out.println(passengerRepository.update(Passenger.builder()
-                .idPass(110L)
-                .fullName("Marti Marta")
-                .personalId("4130578B636PB7")
+                .idPass(10L)
+                .fullName("Martins Iden")
+                .personalId("5130578B636PB4")
                 .created(Timestamp.valueOf(LocalDateTime.now())).build()));
-        passengerRepository.delete(103L);
+        passengerRepository.deleteById(76L);
 
         List<Passenger> letter = passengerRepository.findFirstLetterSurname();
         for (Passenger passenger : letter) {

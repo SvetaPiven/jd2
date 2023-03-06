@@ -24,12 +24,13 @@ public class DocumentPassRepositoryImpl implements DocumentPassRepository {
     }
 
     @Override
-    public DocumentPass update(DocumentPass object) {
-        return null;
+    public boolean update(DocumentPass object) {
+        return true;
     }
 
     @Override
-    public void delete(Long id) {
+    public boolean deleteById(Long id) {
+        return false;
     }
 
     @Override

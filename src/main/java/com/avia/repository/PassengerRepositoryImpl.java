@@ -19,12 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.avia.repository.columns.PassengerColumns.CHANGED;
-import static com.avia.repository.columns.PassengerColumns.CREATED;
-import static com.avia.repository.columns.PassengerColumns.FULL_NAME;
-import static com.avia.repository.columns.PassengerColumns.ID_PASS;
-import static com.avia.repository.columns.PassengerColumns.IS_DELETED;
-import static com.avia.repository.columns.PassengerColumns.PERSONAL_ID;
+import static com.avia.repository.columns.PassengerColumns.changed;
+import static com.avia.repository.columns.PassengerColumns.created;
+import static com.avia.repository.columns.PassengerColumns.full_name;
+import static com.avia.repository.columns.PassengerColumns.id_pass;
+import static com.avia.repository.columns.PassengerColumns.is_deleted;
+import static com.avia.repository.columns.PassengerColumns.personal_id;
 
 @Repository
 @Primary
@@ -56,12 +56,12 @@ public class PassengerRepositoryImpl implements PassengerRepository {
         Passenger passenger;
         try {
             passenger = new Passenger();
-            passenger.setIdPass(rs.getLong(ID_PASS)); //1 or id
-            passenger.setFullName(rs.getString(FULL_NAME));
-            passenger.setPersonalId(rs.getString(PERSONAL_ID));
-            passenger.setCreated(rs.getTimestamp(CREATED));
-            passenger.setChanged(rs.getTimestamp(CHANGED));
-            passenger.setIsDeleted(rs.getBoolean(IS_DELETED));
+            passenger.setIdPass(rs.getLong(id_pass.toString())); //1 or id
+            passenger.setFullName(rs.getString(full_name.toString()));
+            passenger.setPersonalId(rs.getString(personal_id.toString()));
+            passenger.setCreated(rs.getTimestamp(created.toString()));
+            passenger.setChanged(rs.getTimestamp(changed.toString()));
+            passenger.setIsDeleted(rs.getBoolean(is_deleted.toString()));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -113,35 +113,37 @@ public class PassengerRepositoryImpl implements PassengerRepository {
     }
 
     @Override
-    public Passenger update(Passenger passenger) {
+    public boolean update(Passenger passenger) {
         final String updateQuery = "update passengers SET full_name = ?, personal_id = ?, changed = ? WHERE id_pass = ?";
+        boolean updated = false;
         try (Connection connection = driverService.getConnection();
              PreparedStatement statement = connection.prepareStatement(updateQuery)) {
             statement.setString(1, passenger.getFullName());
             statement.setString(2, passenger.getPersonalId());
             statement.setTimestamp(3, passenger.getChanged());
             statement.setLong(4, passenger.getIdPass());
-            statement.executeUpdate();
+            updated = statement.executeUpdate() > 0;
         } catch (SQLException e) {
             System.err.println(e.getMessage());
             throw new RuntimeException("SQL Issues!");
         }
-        return passenger;
+        return updated;
     }
 
     @Override
-    public void delete(Long idPass) {
+    public boolean deleteById(Long idPass) {
         final String deleteQuery = "update passengers set is_deleted = true, changed = ? WHERE id_pass = ?";
+        boolean deleted = false;
         try (Connection connection = driverService.getConnection();
              PreparedStatement statement = connection.prepareStatement(deleteQuery)) {
-            Timestamp changed = null;
             statement.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
             statement.setLong(2, idPass);
-            statement.executeUpdate();
+            deleted = statement.executeUpdate() > 0;
         } catch (SQLException e) {
             System.err.println(e.getMessage());
             throw new RuntimeException("SQL Issues!");
         }
+        return deleted;
     }
 
     @Override
