@@ -1,6 +1,7 @@
 package com.avia.configuration;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,12 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @PropertySource("classpath:database.properties")
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
-@EqualsAndHashCode
+@Data
 public class PropertiesDB {
 
     @Value("${POSTRGES_DRIVER_NAME}")
