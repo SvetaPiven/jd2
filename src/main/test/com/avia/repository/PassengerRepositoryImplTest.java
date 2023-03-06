@@ -18,7 +18,7 @@ class PassengerRepositoryImplTest {
     private PassengerRepositoryImpl passengerRepository;
 
     @Test
-    void getFindAllPassTest() {
+    void findAllPassTest() {
         List<Passenger> all = passengerRepository.findAll();
         for (Passenger passenger : all) {
             System.out.println(passenger);
@@ -26,12 +26,12 @@ class PassengerRepositoryImplTest {
     }
 
     @Test
-    void getFindOnePassTest() {
+    void findOnePassTest() {
         System.out.println(passengerRepository.findOne(1L));
     }
 
     @Test
-    void getCreateTest() {
+    void createTest() {
         System.out.println(passengerRepository.create(Passenger.builder()
                 .fullName("Marta Marta")
                 .personalId("4130577B636PB7")
@@ -41,7 +41,7 @@ class PassengerRepositoryImplTest {
     }
 
     @Test
-    void getUpdateTest() {
+    void updateTest() {
         System.out.println(passengerRepository.update(Passenger.builder()
                 .idPass(10L)
                 .fullName("Martins Iden")
@@ -51,7 +51,7 @@ class PassengerRepositoryImplTest {
     }
 
     @Test
-    void getFirstLetterFullnameTest() {
+    void firstLetterFullnameTest() {
         List<Passenger> letter = passengerRepository.findFirstLetterSurname();
         for (Passenger passenger : letter) {
             System.out.println(passenger);
@@ -59,10 +59,15 @@ class PassengerRepositoryImplTest {
     }
 
     @Test
-    void getAllWomanTest() {
+    void allWomanTest() {
         List<Passenger> woman = passengerRepository.findAllWoman();
         for (Passenger passenger : woman) {
             System.out.println(passenger);
         }
+    }
+
+    @Test
+    void deleteTest() {
+        System.out.println(passengerRepository.deleteById(19L));
     }
 }

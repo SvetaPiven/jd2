@@ -56,12 +56,12 @@ public class PassengerRepositoryImpl implements PassengerRepository {
         Passenger passenger;
         try {
             passenger = new Passenger();
-            passenger.setIdPass(rs.getLong(ID_PASS.toString())); //1 or id
-            passenger.setFullName(rs.getString(FULL_NAME.toString()));
-            passenger.setPersonalId(rs.getString(PERSONAL_ID.toString()));
-            passenger.setCreated(rs.getTimestamp(CREATED.toString()));
-            passenger.setChanged(rs.getTimestamp(CHANGED.toString()));
-            passenger.setIsDeleted(rs.getBoolean(IS_DELETED.toString()));
+            passenger.setIdPass(rs.getLong(ID_PASS.name()));
+            passenger.setFullName(rs.getString(FULL_NAME.name()));
+            passenger.setPersonalId(rs.getString(PERSONAL_ID.name()));
+            passenger.setCreated(rs.getTimestamp(CREATED.name()));
+            passenger.setChanged(rs.getTimestamp(CHANGED.name()));
+            passenger.setIsDeleted(rs.getBoolean(IS_DELETED.name()));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
