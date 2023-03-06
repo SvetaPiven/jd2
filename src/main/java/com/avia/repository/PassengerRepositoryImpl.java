@@ -19,12 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.avia.repository.columns.PassengerColumns.changed;
-import static com.avia.repository.columns.PassengerColumns.created;
-import static com.avia.repository.columns.PassengerColumns.full_name;
-import static com.avia.repository.columns.PassengerColumns.id_pass;
-import static com.avia.repository.columns.PassengerColumns.is_deleted;
-import static com.avia.repository.columns.PassengerColumns.personal_id;
+import static com.avia.repository.columns.PassengerColumns.CHANGED;
+import static com.avia.repository.columns.PassengerColumns.CREATED;
+import static com.avia.repository.columns.PassengerColumns.FULL_NAME;
+import static com.avia.repository.columns.PassengerColumns.ID_PASS;
+import static com.avia.repository.columns.PassengerColumns.IS_DELETED;
+import static com.avia.repository.columns.PassengerColumns.PERSONAL_ID;
 
 @Repository
 @Primary
@@ -56,12 +56,12 @@ public class PassengerRepositoryImpl implements PassengerRepository {
         Passenger passenger;
         try {
             passenger = new Passenger();
-            passenger.setIdPass(rs.getLong(id_pass.toString())); //1 or id
-            passenger.setFullName(rs.getString(full_name.toString()));
-            passenger.setPersonalId(rs.getString(personal_id.toString()));
-            passenger.setCreated(rs.getTimestamp(created.toString()));
-            passenger.setChanged(rs.getTimestamp(changed.toString()));
-            passenger.setIsDeleted(rs.getBoolean(is_deleted.toString()));
+            passenger.setIdPass(rs.getLong(ID_PASS.toString())); //1 or id
+            passenger.setFullName(rs.getString(FULL_NAME.toString()));
+            passenger.setPersonalId(rs.getString(PERSONAL_ID.toString()));
+            passenger.setCreated(rs.getTimestamp(CREATED.toString()));
+            passenger.setChanged(rs.getTimestamp(CHANGED.toString()));
+            passenger.setIsDeleted(rs.getBoolean(IS_DELETED.toString()));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
