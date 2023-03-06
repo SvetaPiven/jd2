@@ -16,13 +16,13 @@ public class PassengerAggServiceImpl implements PassengerAggregationService {
     private PassengerRepository passengerRepository;
 
     @Override
-    public Map<String, Object> searchPassengerCitizenBelarus() {
-        List<Passenger> passengers = passengerRepository.findAll();
-        Map<String, Object> resultMap = new HashMap<>();
+    public Map<Long, Object> searchPassengerCitizenBelarus() {
+        List<Passenger> passengers = passengerRepository.searchPassengerCitizenBelarus();
+        Map<Long, Object> resultMap = new HashMap<>();
         for (Passenger passenger : passengers) {
-            String personalId = passenger.getPersonalId();
-            List<Passenger> fullName = passengerRepository.searchPassengerCitizenBelarus();
-            resultMap.put(personalId, fullName);
+            Long idPass = passenger.getIdPass();
+            String fullName = passenger.getFullName();
+            resultMap.put(idPass, fullName);
         }
         return resultMap;
     }
