@@ -30,7 +30,6 @@ import static com.avia.repository.columns.PassengerColumns.PERSONAL_ID;
 @Primary
 @RequiredArgsConstructor
 public class PassengerRepositoryImpl implements PassengerRepository {
-    private final PropertiesDB properties;
     @Autowired
     private DriverService driverService;
 
@@ -68,6 +67,12 @@ public class PassengerRepositoryImpl implements PassengerRepository {
         return passenger;
     }
 
+    @Deprecated
+    @Override
+    public Passenger findById(Long idPass) {
+        return null;
+    }
+
     @Override
     public Optional<Passenger> findOne(Long idPass) {
         final String findOne = "select * from passengers where id_pass = ?";
@@ -98,12 +103,36 @@ public class PassengerRepositoryImpl implements PassengerRepository {
     public Passenger create(Passenger passenger) {
         final String createQuery = "INSERT INTO passengers (full_name, personal_id, created, changed)" +
                 " values (?, ?, ?, ?)";
+        final String sql = "SELECT id_pass FROM passengers ORDER BY id_pass DESC LIMIT 1";
         try (Connection connection = driverService.getConnection();
              PreparedStatement statement = connection.prepareStatement(createQuery)) {
             statement.setString(1, passenger.getFullName());
             statement.setString(2, passenger.getPersonalId());
             statement.setTimestamp(3, passenger.getCreated());
             statement.setTimestamp(4, passenger.getChanged());
+            statement.executeUpdate();
+            PreparedStatement lastIdStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = lastIdStatement.executeQuery();
+            if (resultSet.next()) {
+                passenger.setIdPass(resultSet.getLong("id_pass"));
+            }
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            throw new RuntimeException("SQL Issues!");
+        }
+        return passenger;
+    }
+
+    @Override
+    public Passenger update(Passenger passenger) {
+        final String updateQuery = "update passengers SET full_name = ?, personal_id = ?, changed = ? WHERE id_pass = ?";
+        try (Connection connection = driverService.getConnection();
+             PreparedStatement statement = connection.prepareStatement(updateQuery)) {
+            statement.setString(1, passenger.getFullName());
+            statement.setString(2, passenger.getPersonalId());
+            statement.setTimestamp(3, passenger.getChanged());
+            statement.setLong(4, passenger.getIdPass());
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -113,37 +142,18 @@ public class PassengerRepositoryImpl implements PassengerRepository {
     }
 
     @Override
-    public boolean update(Passenger passenger) {
-        final String updateQuery = "update passengers SET full_name = ?, personal_id = ?, changed = ? WHERE id_pass = ?";
-        boolean updated = false;
-        try (Connection connection = driverService.getConnection();
-             PreparedStatement statement = connection.prepareStatement(updateQuery)) {
-            statement.setString(1, passenger.getFullName());
-            statement.setString(2, passenger.getPersonalId());
-            statement.setTimestamp(3, passenger.getChanged());
-            statement.setLong(4, passenger.getIdPass());
-            updated = statement.executeUpdate() > 0;
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-            throw new RuntimeException("SQL Issues!");
-        }
-        return updated;
-    }
-
-    @Override
-    public boolean deleteById(Long idPass) {
+    public Passenger deleteById(Long idPass) {
         final String deleteQuery = "update passengers set is_deleted = true, changed = ? WHERE id_pass = ?";
-        boolean deleted = false;
         try (Connection connection = driverService.getConnection();
              PreparedStatement statement = connection.prepareStatement(deleteQuery)) {
             statement.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
             statement.setLong(2, idPass);
-            deleted = statement.executeUpdate() > 0;
+            statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println(e.getMessage());
             throw new RuntimeException("SQL Issues!");
         }
-        return deleted;
+        return new Passenger();
     }
 
     @Override

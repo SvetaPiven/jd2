@@ -39,12 +39,12 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public boolean update(Passenger object) {
-        return false;
+    public Passenger update(Passenger object) {
+        return null;
     }
 
     @Override
-    public boolean delete(Long idPass) {
-        return false;
+    public Passenger delete(Long idPass) {
+        return null;
     }
 }

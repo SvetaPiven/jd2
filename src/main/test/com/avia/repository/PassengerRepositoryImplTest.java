@@ -1,5 +1,6 @@
 package com.avia.repository;
 
+import com.avia.domain.PassDoc;
 import com.avia.domain.Passenger;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,6 +17,7 @@ import java.util.List;
 class PassengerRepositoryImplTest {
     @Autowired
     private PassengerRepositoryImpl passengerRepository;
+    private DocumentPassRepositoryImpl documentPassRepository;
 
     @Test
     void findAllPassTest() {
@@ -33,21 +35,19 @@ class PassengerRepositoryImplTest {
     @Test
     void createTest() {
         System.out.println(passengerRepository.create(Passenger.builder()
-                .fullName("Marta Marta")
-                .personalId("4130577B636PB7")
+                .fullName("Martin Martin")
+                .personalId("4130577B635PB1")
                 .created(Timestamp.valueOf(LocalDateTime.now()))
                 .isDeleted(null).build()));
-
     }
 
     @Test
     void updateTest() {
         System.out.println(passengerRepository.update(Passenger.builder()
-                .idPass(10L)
-                .fullName("Martins Iden")
-                .personalId("5130578B636PB4")
+                .idPass(19L)
+                .fullName("Marti Idenn")
+                .personalId("5230578B636PB4")
                 .created(Timestamp.valueOf(LocalDateTime.now())).build()));
-        passengerRepository.deleteById(76L);
     }
 
     @Test
@@ -68,6 +68,14 @@ class PassengerRepositoryImplTest {
 
     @Test
     void deleteTest() {
-        System.out.println(passengerRepository.deleteById(19L));
+        System.out.println(passengerRepository.deleteById(18L));
+    }
+
+    @Test
+    void findPassMinskRegionTest() {
+        List<PassDoc> document = documentPassRepository.findMinskRegionPass();
+        for (PassDoc pass : document) {
+            System.out.println(pass);
+        }
     }
 }

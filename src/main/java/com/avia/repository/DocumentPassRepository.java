@@ -1,6 +1,9 @@
 package com.avia.repository;
 
-import com.avia.domain.DocumentPass;
+import com.avia.domain.PassDoc;
 
-public interface DocumentPassRepository extends CRUDRepository<Long, DocumentPass> {
+import java.util.List;
+
+public interface DocumentPassRepository extends CRUDRepository<Long, PassDoc> {
+    List<PassDoc> findMinskRegionPass();
 }

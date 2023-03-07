@@ -11,6 +11,11 @@ import java.util.Optional;
 public class PassengerSecondRepositoryImpl implements PassengerRepository {
 
     @Override
+    public Passenger findById(Long id) {
+        return null;
+    }
+
+    @Override
     public Optional<Passenger> findOne(Long idPass) {
         return null;
     }
@@ -26,13 +31,13 @@ public class PassengerSecondRepositoryImpl implements PassengerRepository {
     }
 
     @Override
-    public boolean update(Passenger object) {
-        return false;
+    public Passenger update(Passenger object) {
+        return null;
     }
 
     @Override
-    public boolean deleteById(Long idPass) {
-        return false;
+    public Passenger deleteById(Long idPass) {
+        return null;
     }
 
     @Override
@@ -49,5 +54,4 @@ public class PassengerSecondRepositoryImpl implements PassengerRepository {
     public List<Passenger> findFirstLetterSurname() {
         return null;
     }
-
 }
