@@ -36,7 +36,7 @@ public class PassengerSecondRepositoryImpl implements PassengerRepository {
     }
 
     @Override
-    public Passenger deleteById(Long idPass) {
+    public Optional<Passenger> deleteById(Long idPass) {
         return null;
     }
 

@@ -15,15 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.avia.repository.columns.PassDoc.CHANGED;
-import static com.avia.repository.columns.PassDoc.CREATED;
-import static com.avia.repository.columns.PassDoc.DOCUMENT_NUM;
 import static com.avia.repository.columns.PassDoc.FULL_NAME;
-import static com.avia.repository.columns.PassDoc.ID_DOCUMENT_PASS;
-import static com.avia.repository.columns.PassDoc.ID_DOCUMENT_TYPE;
 import static com.avia.repository.columns.PassDoc.ID_PASS;
-import static com.avia.repository.columns.PassDoc.IS_DELETED;
-import static com.avia.repository.columns.PassDoc.PERSONAL_ID;
 
 @Repository
 @Primary
@@ -89,7 +82,7 @@ public class DocumentPassRepositoryImpl implements DocumentPassRepository {
     }
 
     @Override
-    public PassDoc deleteById(Long id) {
+    public Optional<PassDoc> deleteById(Long id) {
         return null;
     }
 

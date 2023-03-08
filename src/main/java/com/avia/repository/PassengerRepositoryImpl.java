@@ -1,6 +1,5 @@
 package com.avia.repository;
 
-import com.avia.configuration.PropertiesDB;
 import com.avia.domain.Passenger;
 import com.avia.service.DriverService;
 import lombok.RequiredArgsConstructor;
@@ -154,24 +153,21 @@ public class PassengerRepositoryImpl implements PassengerRepository {
     }
 
     @Override
-    public Passenger deleteById(Long idPass) {
+    public Optional<Passenger> deleteById(Long idPass) {
         final String deleteQuery = "update passengers set is_deleted = true, changed = ? WHERE id_pass = ?";
-        final String sql = "update id_pass FROM passengers ORDER BY id_pass DESC LIMIT 1";
+        Optional<Passenger> pass = findOne(idPass);
         try (Connection connection = driverService.getConnection();
              PreparedStatement statement = connection.prepareStatement(deleteQuery)) {
+            Timestamp changed = null;
             statement.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
             statement.setLong(2, idPass);
             statement.executeUpdate();
-            PreparedStatement deleteIdStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = deleteIdStatement.executeQuery();
-            if (resultSet.next()) {
-                resultSet.getLong("id_pass");
-            }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
             throw new RuntimeException("SQL Issues!");
         }
-        return new Passenger();
+        Optional<Passenger> passDelete = findOne(idPass);
+        return passDelete;
     }
 
     @Override

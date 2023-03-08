@@ -69,7 +69,7 @@ class PassengerRepositoryImplTest {
 
     @Test
     void deleteTest() {
-        System.out.println(passengerRepository.deleteById(18L));
+        System.out.println(passengerRepository.deleteById(12L));
     }
 
     @Test
