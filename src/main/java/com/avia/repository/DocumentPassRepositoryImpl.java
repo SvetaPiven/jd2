@@ -1,6 +1,5 @@
 package com.avia.repository;
 
-import com.avia.domain.DocumentPass;
 import com.avia.domain.PassDoc;
 import com.avia.service.DriverService;
 import lombok.RequiredArgsConstructor;
@@ -16,15 +15,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static com.avia.repository.columns.PassDoc.CHANGED;
+import static com.avia.repository.columns.PassDoc.CREATED;
 import static com.avia.repository.columns.PassDoc.DOCUMENT_NUM;
 import static com.avia.repository.columns.PassDoc.FULL_NAME;
 import static com.avia.repository.columns.PassDoc.ID_DOCUMENT_PASS;
 import static com.avia.repository.columns.PassDoc.ID_DOCUMENT_TYPE;
 import static com.avia.repository.columns.PassDoc.ID_PASS;
-import static com.avia.repository.columns.PassDoc.PERSONAL_ID;
-import static com.avia.repository.columns.PassDoc.CREATED;
-import static com.avia.repository.columns.PassDoc.CHANGED;
 import static com.avia.repository.columns.PassDoc.IS_DELETED;
+import static com.avia.repository.columns.PassDoc.PERSONAL_ID;
 
 @Repository
 @Primary
@@ -58,13 +57,6 @@ public class DocumentPassRepositoryImpl implements DocumentPassRepository {
             pass = new PassDoc();
             pass.setIdPass(rs.getLong(ID_PASS.name()));
             pass.setFullName(rs.getString(FULL_NAME.name()));
-            pass.setPersonalId(rs.getString(PERSONAL_ID.name()));
-            pass.setIdDocumentPass(rs.getLong(ID_DOCUMENT_PASS.name()));
-            pass.setIdDocumentType(rs.getLong(ID_DOCUMENT_TYPE.name()));
-            pass.setDocumentNum(rs.getString(DOCUMENT_NUM.name()));
-            pass.setCreated(rs.getTimestamp(CREATED.name()));
-           pass.setChanged(rs.getTimestamp(CHANGED.name()));
-            pass.setIsDeleted(rs.getBoolean(IS_DELETED.name()));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

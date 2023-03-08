@@ -17,6 +17,7 @@ import java.util.List;
 class PassengerRepositoryImplTest {
     @Autowired
     private PassengerRepositoryImpl passengerRepository;
+    @Autowired
     private DocumentPassRepositoryImpl documentPassRepository;
 
     @Test
@@ -78,7 +79,9 @@ class PassengerRepositoryImplTest {
 
     @Test
     void findPassMinskRegionTest() {
-        System.out.println(documentPassRepository);
-        System.out.println(documentPassRepository.findMinskRegionPass());
+        List<PassDoc> pass = documentPassRepository.findMinskRegionPass();
+        for (PassDoc passenger : pass) {
+            System.out.println(passenger);
+        }
     }
 }
