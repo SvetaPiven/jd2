@@ -36,7 +36,7 @@ public class DocumentPassRepositoryImpl implements DocumentPassRepository {
     public List<PassDoc> findMinskRegionPass() {
         final String findByDocument = "select p.id_pass, p.full_name from passengers as p " +
                 "inner join document_pass as d on d.id_pass = p.id_pass " +
-                "where document_num like 'MC%' order by id_pass asc";
+                "where d.document_num like 'MC%' order by p.id_pass asc";
         List<PassDoc> result = new ArrayList<>();
         try (Connection connection = driverService.getConnection();
              Statement statement = connection.createStatement();
@@ -65,7 +65,6 @@ public class DocumentPassRepositoryImpl implements DocumentPassRepository {
             pass.setCreated(rs.getTimestamp(CREATED.name()));
            pass.setChanged(rs.getTimestamp(CHANGED.name()));
             pass.setIsDeleted(rs.getBoolean(IS_DELETED.name()));
-            System.out.println(pass);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

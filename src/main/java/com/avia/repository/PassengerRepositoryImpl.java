@@ -67,17 +67,29 @@ public class PassengerRepositoryImpl implements PassengerRepository {
         return passenger;
     }
 
-    @Deprecated
     @Override
     public Passenger findById(Long idPass) {
-        return null;
+        final String findOneById = "select * from passengers where id_pass = ?";
+        List<Passenger> passenger = new ArrayList<>();
+        try (Connection connection = driverService.getConnection();
+             PreparedStatement statement = connection.prepareStatement(findOneById)) {
+            statement.setLong(1, idPass);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                passenger.add(parseResultSet(resultSet));
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            throw new RuntimeException("SQL Issues!");
+        }
+        return passenger.size() == 1 ? passenger.get(0) : null;
     }
 
     @Override
     public Optional<Passenger> findOne(Long idPass) {
         final String findOne = "select * from passengers where id_pass = ?";
-        String fullName = "";
-        String personalId = "";
+        String fullName = null;
+        String personalId = null;
         Timestamp created = null;
         Timestamp changed = null;
         boolean isDeleted = false;
@@ -191,6 +203,11 @@ public class PassengerRepositoryImpl implements PassengerRepository {
             System.err.println(e.getMessage());
             throw new RuntimeException("SQL Issues!");
         }
+    }
+
+    @Override
+    public List<Passenger> findMinskRegionPass() {
+        return null;
     }
 
     @Override

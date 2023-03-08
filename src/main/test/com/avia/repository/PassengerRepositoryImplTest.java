@@ -29,7 +29,7 @@ class PassengerRepositoryImplTest {
 
     @Test
     void findOnePassTest() {
-        System.out.println(passengerRepository.findOne(1L));
+        System.out.println(passengerRepository.findOne(1000L));
     }
 
     @Test
@@ -72,10 +72,13 @@ class PassengerRepositoryImplTest {
     }
 
     @Test
+    void findOnePassByIdTest() {
+        System.out.println(passengerRepository.findById(1L));
+    }
+
+    @Test
     void findPassMinskRegionTest() {
-        List<PassDoc> document = documentPassRepository.findMinskRegionPass();
-        for (PassDoc pass : document) {
-            System.out.println(pass);
-        }
+        System.out.println(documentPassRepository);
+        System.out.println(documentPassRepository.findMinskRegionPass());
     }
 }

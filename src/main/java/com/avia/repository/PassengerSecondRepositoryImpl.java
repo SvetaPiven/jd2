@@ -54,4 +54,9 @@ public class PassengerSecondRepositoryImpl implements PassengerRepository {
     public List<Passenger> findFirstLetterSurname() {
         return null;
     }
+
+    @Override
+    public List<Passenger> findMinskRegionPass() {
+        return null;
+    }
 }

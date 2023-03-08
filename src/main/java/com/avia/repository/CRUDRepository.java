@@ -20,4 +20,5 @@ public interface CRUDRepository<K, T> {
 
     List<T> findAllWoman();
     List<T> findFirstLetterSurname();
+    List<T> findMinskRegionPass();
 }
