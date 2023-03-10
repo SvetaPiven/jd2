@@ -16,7 +16,6 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-@ToString
 @Builder
 public class DocumentPass {
     private Long idDocumentPass;
