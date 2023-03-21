@@ -113,32 +113,32 @@ public class TicketRepositoryJdbcTemplateImpl implements TicketRepository {
         return null;
     }
 
-//    @PostConstruct
-//    public void init() {
-//        jdbcTemplate.setResultsMapCaseInsensitive(true);
-//        simpleJdbcCallFunction = new SimpleJdbcCall(jdbcTemplate)
-//                .withFunctionName("findMostExpensiveTicket");
-//        simpleJdbcCallProc = new SimpleJdbcCall(jdbcTemplate)
-//                .withProcedureName("findSaleTicket");
-//    }
+    @PostConstruct
+    public void init() {
+        jdbcTemplate.setResultsMapCaseInsensitive(true);
+        simpleJdbcCallFunction = new SimpleJdbcCall(jdbcTemplate)
+                .withFunctionName("findMostExpensiveTicket");
+        simpleJdbcCallProc = new SimpleJdbcCall(jdbcTemplate)
+                .withProcedureName("findSaleTicket");
+    }
 
     public void findMostExpensiveTicket(Long idP) {
-//        final String SQL_FUNCTION = " CREATE OR REPLACE FUNCTION findMostExpensiveTicket(id_p int) "
-//                + " RETURNS numeric(10, 2) "
-//                + " LANGUAGE plpgsql "
-//                + " AS "
-//                + " $$ "
-//                + " DECLARE "
-//                + " itemPrice numeric(10, 2);"
-//                + " begin "
-//                + " SELECT MAX(price) "
-//                + " INTO itemPrice "
-//                + " FROM tickets "
-//                + " WHERE id_pass = id_p; "
-//                + " RETURN itemPrice; "
-//                + " end; "
-//                + " $$; ";
-//        jdbcTemplate.execute(SQL_FUNCTION);
+        final String SQL_FUNCTION = " CREATE OR REPLACE FUNCTION findMostExpensiveTicket(id_p int) "
+                + " RETURNS numeric(10, 2) "
+                + " LANGUAGE plpgsql "
+                + " AS "
+                + " $$ "
+                + " DECLARE "
+                + " itemPrice numeric(10, 2);"
+                + " begin "
+                + " SELECT MAX(price) "
+                + " INTO itemPrice "
+                + " FROM tickets "
+                + " WHERE id_pass = id_p; "
+                + " RETURN itemPrice; "
+                + " end; "
+                + " $$; ";
+        jdbcTemplate.execute(SQL_FUNCTION);
         final String sql = "SELECT findMostExpensiveTicket(1) as mostExpensive;";
         jdbcTemplate.execute(sql);
         SqlParameterSource in = new MapSqlParameterSource().addValue("idP", idP);
