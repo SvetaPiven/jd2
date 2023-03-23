@@ -84,10 +84,10 @@ public class TicketRestController {
         return new ResponseEntity<>(ticket, HttpStatus.OK);
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<Object> searchMostExpensiveTicket(@RequestBody TicketCreateRequest request) {
+    @GetMapping("/search/{id}")
+    public ResponseEntity<Object> searchMostExpensiveTicket(@PathVariable Long id) {
 
-        BigDecimal price = ticketRepositoryJdbcTemplate.findMostExpensiveTicket(request.getIdPass());
+        BigDecimal price = ticketRepositoryJdbcTemplate.findMostExpensiveTicket(id);
 
         return new ResponseEntity<>(price, HttpStatus.OK);
     }
