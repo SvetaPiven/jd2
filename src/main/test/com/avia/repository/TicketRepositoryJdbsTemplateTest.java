@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,6 +21,11 @@ class TicketRepositoryJdbsTemplateTest {
     private static final Logger logger = Logger.getLogger(PassengerRepositoryJdbsTemplateTest.class);
     @Autowired
     private TicketRepositoryJdbcTemplateImpl ticketRepositoryJdbcTemplate;
+    @Test
+    void profitAirlineTest() {
+        logger.info("Creating Store Function...");
+        logger.info(ticketRepositoryJdbcTemplate.profitAirline(1L));
+    }
 
     @Test
     void startFunctionTest() {

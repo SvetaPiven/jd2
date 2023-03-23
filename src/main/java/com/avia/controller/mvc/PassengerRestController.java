@@ -111,13 +111,6 @@ public class PassengerRestController {
     }
 }
 
-//Domain - Car
-//GET + /rest/cars - findAll
-//GET + /rest/cars/{id} - findOne
-//POST + /rest/cars - create object
-//PUT + /rest/cars - update object
-//DELETE + /rest/cars - update object
-
 //PATCH + /rest/cars  - partial update of object
 //GET + /rest/cars/search/woman
 //GET + /rest/cars/search

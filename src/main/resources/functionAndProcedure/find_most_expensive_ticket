@@ -1,4 +1,4 @@
-create function findmostexpensiveticket(id_p bigint) returns numeric
+create function find_most_expensive_ticket(id_p bigint) returns numeric
     language plpgsql
 as
 $$
@@ -13,4 +13,4 @@ begin
 end;
 $$;
 
-alter function findmostexpensiveticket(integer) owner to development;
+alter function find_most_expensive_ticket(integer) owner to development;

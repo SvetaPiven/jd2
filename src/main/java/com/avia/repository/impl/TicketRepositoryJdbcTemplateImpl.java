@@ -1,5 +1,6 @@
 package com.avia.repository.impl;
 
+import com.avia.domain.Passenger;
 import com.avia.domain.Ticket;
 import com.avia.repository.TicketRepository;
 import com.avia.repository.rowmapper.TicketRowMapper;
@@ -14,6 +15,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -98,12 +100,20 @@ public class TicketRepositoryJdbcTemplateImpl implements TicketRepository {
     public BigDecimal findMostExpensiveTicket(Long idPass) {
         jdbcTemplate.setResultsMapCaseInsensitive(true);
         SimpleJdbcCall simpleJdbcCallFunction = new SimpleJdbcCall(jdbcTemplate)
-                .withFunctionName("findMostExpensiveTicket");
+                .withFunctionName("find_most_expensive_ticket");
         SqlParameterSource in = new MapSqlParameterSource().addValue("idP", idPass);
         return simpleJdbcCallFunction.executeFunction(BigDecimal.class, in);
     }
 
     public void findSaleTicket(Long idTicket, Float discount) {
          jdbcTemplate.update("call sale(?, ?)", idTicket, discount);
+    }
+
+    public Object profitAirline(Long query) {
+        jdbcTemplate.setResultsMapCaseInsensitive(true);
+        SimpleJdbcCall simpleJdbcCallFunction = new SimpleJdbcCall(jdbcTemplate)
+                .withFunctionName("calculate_profit_airline");
+        SqlParameterSource in = new MapSqlParameterSource().addValue("query", query);
+        return simpleJdbcCallFunction.executeFunction(BigDecimal.class, in);
     }
 }
