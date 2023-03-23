@@ -23,13 +23,13 @@ class TicketRepositoryJdbsTemplateTest {
 
     @Test
     void startFunctionTest() {
-        logger.info("Creating Store Procedures and Function...");
-        ticketRepositoryJdbcTemplate.findMostExpensiveTicket(5L);
+        logger.info("Creating Store Function...");
+        logger.info(ticketRepositoryJdbcTemplate.findMostExpensiveTicket(7L));
     }
 
     @Test
     void startProcTest() {
-        logger.info("Creating Store Procedures and Function...");
+        logger.info("Creating Store Procedure...");
         ticketRepositoryJdbcTemplate.findSaleTicket(5L, 0.05F);
     }
 
@@ -65,11 +65,11 @@ class TicketRepositoryJdbsTemplateTest {
         logger.info(ticketRepositoryJdbcTemplate.update(Ticket.builder()
                 .idTicket(5L)
                 .idTicketStatus(2L)
-                .idPass(5L)
-                .idTicketClass(2L)
-                .idAirline(3L)
-                .price(BigDecimal.valueOf(300.33))
-                .idFlight(3L)
+                .idPass(6L)
+                .idTicketClass(1L)
+                .idAirline(5L)
+                .price(BigDecimal.valueOf(400.33))
+                .idFlight(6L)
                 .idPlace(String.valueOf(4D))
                 .changed(Timestamp.valueOf(LocalDateTime.now()))
                 .build()));

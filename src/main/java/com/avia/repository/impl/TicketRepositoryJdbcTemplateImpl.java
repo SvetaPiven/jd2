@@ -13,7 +13,6 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -30,8 +29,6 @@ public class TicketRepositoryJdbcTemplateImpl implements TicketRepository {
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     private final TicketRowMapper ticketRowMapper;
-    private SimpleJdbcCall simpleJdbcCallFunction;
-    private SimpleJdbcCall simpleJdbcCallProc;
 
     @Override
     public Ticket findById(Long idTicket) {
@@ -88,7 +85,7 @@ public class TicketRepositoryJdbcTemplateImpl implements TicketRepository {
                 ticket.getIdAirline(),
                 ticket.getChanged(),
                 ticket.getIdTicket());
-        return ticket;
+        return findById(ticket.getIdTicket());
     }
 
     @Override
@@ -98,55 +95,15 @@ public class TicketRepositoryJdbcTemplateImpl implements TicketRepository {
         return findOne(idTicket);
     }
 
-    @Override
-    public List<Ticket> findAllWoman() {
-        return null;
-    }
-
-    @Override
-    public List<Ticket> searchPassSurname() {
-        return null;
-    }
-
-    @Override
-    public List<Ticket> findMinskRegionPass() {
-        return null;
-    }
-
-    @PostConstruct
-    public void init() {
+    public BigDecimal findMostExpensiveTicket(Long idPass) {
         jdbcTemplate.setResultsMapCaseInsensitive(true);
-        simpleJdbcCallFunction = new SimpleJdbcCall(jdbcTemplate)
+        SimpleJdbcCall simpleJdbcCallFunction = new SimpleJdbcCall(jdbcTemplate)
                 .withFunctionName("findMostExpensiveTicket");
-        simpleJdbcCallProc = new SimpleJdbcCall(jdbcTemplate)
-                .withProcedureName("findSaleTicket");
-    }
-
-    public void findMostExpensiveTicket(Long idP) {
-        final String SQL_FUNCTION = " CREATE OR REPLACE FUNCTION findMostExpensiveTicket(id_p int) "
-                + " RETURNS numeric(10, 2) "
-                + " LANGUAGE plpgsql "
-                + " AS "
-                + " $$ "
-                + " DECLARE "
-                + " itemPrice numeric(10, 2);"
-                + " begin "
-                + " SELECT MAX(price) "
-                + " INTO itemPrice "
-                + " FROM tickets "
-                + " WHERE id_pass = id_p; "
-                + " RETURN itemPrice; "
-                + " end; "
-                + " $$; ";
-        jdbcTemplate.execute(SQL_FUNCTION);
-        final String sql = "SELECT findMostExpensiveTicket(1) as mostExpensive;";
-        jdbcTemplate.execute(sql);
-        SqlParameterSource in = new MapSqlParameterSource().addValue("idP", idP);
-        BigDecimal price = simpleJdbcCallFunction.executeFunction(BigDecimal.class, in);
-        logger.info(price);
+        SqlParameterSource in = new MapSqlParameterSource().addValue("idP", idPass);
+        return simpleJdbcCallFunction.executeFunction(BigDecimal.class, in);
     }
 
     public void findSaleTicket(Long idTicket, Float discount) {
-         jdbcTemplate.update("call findSaleTicket(?, ?)", idTicket, discount);
+         jdbcTemplate.update("call sale(?, ?)", idTicket, discount);
     }
 }
