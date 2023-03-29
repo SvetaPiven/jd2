@@ -13,4 +13,4 @@ begin
 end;
 $$;
 
-alter function find_most_expensive_ticket(integer) owner to development;
+alter function find_most_expensive_ticket(bigint) owner to development;
