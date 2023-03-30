@@ -7,6 +7,7 @@ import java.util.Optional;
 
 public interface PassengerService {
     Optional<Passenger> findOne(Long idPass);
+
     Passenger findById(Long idPass);
 
     List<Passenger> findAll();

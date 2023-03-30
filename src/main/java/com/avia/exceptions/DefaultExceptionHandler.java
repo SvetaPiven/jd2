@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import static com.avia.response.ApplicationErrorCodes.FATAL_ERROR;
 import static com.avia.response.ApplicationErrorCodes.USER_NOT_FOUND;
 
-
 @ControllerAdvice
 @RequiredArgsConstructor
 public class DefaultExceptionHandler {
