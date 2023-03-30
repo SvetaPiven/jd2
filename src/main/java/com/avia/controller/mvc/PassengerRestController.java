@@ -3,6 +3,7 @@ package com.avia.controller.mvc;
 import com.avia.controller.requests.PassengerCreateRequest;
 import com.avia.domain.Passenger;
 import com.avia.repository.impl.PassengerRepositoryJdbcTemplateImpl;
+import com.avia.service.PassengerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,11 +27,12 @@ import java.util.Optional;
 public class PassengerRestController {
 
     private final PassengerRepositoryJdbcTemplateImpl passengerRepositoryJdbcTemplate;
+    private final PassengerService passengerService;
 
     @GetMapping()
     public ResponseEntity<List<Passenger>> getAllPassengers() {
 
-        List<Passenger> passengers = passengerRepositoryJdbcTemplate.findAll();
+        List<Passenger> passengers = passengerService.findAll();
 
         return new ResponseEntity<>(passengers, HttpStatus.OK);
     }
@@ -43,7 +45,7 @@ public class PassengerRestController {
                 .personalId(request.getPersonalId())
                 .build();
 
-        Passenger createdPassenger = passengerRepositoryJdbcTemplate.create(build);
+        Passenger createdPassenger = passengerService.create(build);
 
         return new ResponseEntity<>(createdPassenger, HttpStatus.CREATED);
     }
@@ -51,7 +53,7 @@ public class PassengerRestController {
     @GetMapping("/{id}")
     public ResponseEntity<Passenger> findPassengerById(@PathVariable Long id) {
 
-        Passenger passenger = passengerRepositoryJdbcTemplate.findById(id);
+        Passenger passenger = passengerService.findById(id);
 
         return new ResponseEntity<>(passenger, HttpStatus.OK);
     }
@@ -59,7 +61,7 @@ public class PassengerRestController {
     @PutMapping
     public ResponseEntity<Passenger> updatePassenger(@RequestBody PassengerCreateRequest request) {
 
-        Passenger passenger = passengerRepositoryJdbcTemplate.update(Passenger.builder()
+        Passenger passenger = passengerService.update(Passenger.builder()
                 .idPass(request.getIdPass())
                 .fullName(request.getFullName())
                 .personalId(request.getPersonalId())
@@ -71,7 +73,7 @@ public class PassengerRestController {
     @PatchMapping
     public ResponseEntity<Passenger> partialUpdatePassenger(@RequestBody PassengerCreateRequest request) {
 
-        Passenger passenger = passengerRepositoryJdbcTemplate.update(Passenger.builder()
+        Passenger passenger = passengerService.update(Passenger.builder()
                 .idPass(request.getIdPass())
                 .fullName(request.getFullName())
                 .personalId(request.getPersonalId())
@@ -83,7 +85,7 @@ public class PassengerRestController {
     @DeleteMapping
     public ResponseEntity<Optional<Passenger>> deletePassenger(@RequestBody PassengerCreateRequest request) {
 
-        Optional<Passenger> passenger = passengerRepositoryJdbcTemplate.deleteById(request.getIdPass());
+        Optional<Passenger> passenger = passengerService.deleteById(request.getIdPass());
 
         return new ResponseEntity<>(passenger, HttpStatus.OK);
     }

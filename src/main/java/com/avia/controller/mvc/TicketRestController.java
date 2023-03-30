@@ -3,6 +3,7 @@ package com.avia.controller.mvc;
 import com.avia.controller.requests.TicketCreateRequest;
 import com.avia.domain.Ticket;
 import com.avia.repository.impl.TicketRepositoryJdbcTemplateImpl;
+import com.avia.service.TicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,10 +27,11 @@ import java.util.Optional;
 public class TicketRestController {
 
     private final TicketRepositoryJdbcTemplateImpl ticketRepositoryJdbcTemplate;
+    private final TicketService ticketService;
 
     @GetMapping
     public ResponseEntity<List<Ticket>> getAllTickets() {
-        List<Ticket> tickets = ticketRepositoryJdbcTemplate.findAll();
+        List<Ticket> tickets = ticketService.findAll();
         return new ResponseEntity<>(tickets, HttpStatus.OK);
     }
 
@@ -47,7 +49,7 @@ public class TicketRestController {
                 .idAirline(request.getIdAirline())
                 .build();
 
-        Ticket createdTicket = ticketRepositoryJdbcTemplate.create(build);
+        Ticket createdTicket = ticketService.create(build);
 
         return new ResponseEntity<>(createdTicket, HttpStatus.CREATED);
     }
@@ -55,7 +57,7 @@ public class TicketRestController {
     @GetMapping("/{id}")
     public ResponseEntity<Ticket> findTicketById(@PathVariable Long id) {
 
-        Ticket ticket = ticketRepositoryJdbcTemplate.findById(id);
+        Ticket ticket = ticketService.findById(id);
 
         return new ResponseEntity<>(ticket, HttpStatus.OK);
     }
@@ -63,7 +65,7 @@ public class TicketRestController {
     @PatchMapping
     public ResponseEntity<Ticket> partialUpdateTicket(@RequestBody TicketCreateRequest request) {
 
-        Ticket ticket = ticketRepositoryJdbcTemplate.update(Ticket.builder()
+        Ticket ticket = ticketService.update(Ticket.builder()
                 .idTicket(request.getIdTicket())
                 .idPass(request.getIdPass())
                 .idTicketClass(request.getIdTicketClass())
@@ -80,7 +82,7 @@ public class TicketRestController {
     @DeleteMapping
     public ResponseEntity<Optional<Ticket>> deleteTicket(@RequestBody TicketCreateRequest request) {
 
-        Optional<Ticket> ticket = ticketRepositoryJdbcTemplate.deleteById(request.getIdTicket());
+        Optional<Ticket> ticket = ticketService.deleteById(request.getIdTicket());
 
         return new ResponseEntity<>(ticket, HttpStatus.OK);
     }
