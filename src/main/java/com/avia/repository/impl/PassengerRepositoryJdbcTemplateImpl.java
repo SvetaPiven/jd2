@@ -1,6 +1,7 @@
 package com.avia.repository.impl;
 
 import com.avia.domain.Passenger;
+import com.avia.exceptions.EntityNotFoundException;
 import com.avia.repository.PassengerRepository;
 import com.avia.repository.rowmapper.PassengerRowMapper;
 import lombok.RequiredArgsConstructor;
@@ -31,16 +32,21 @@ public class PassengerRepositoryJdbcTemplateImpl implements PassengerRepository 
     public Passenger findById(Long idPass) {
         try {
             return jdbcTemplate.queryForObject("select * from passengers where id_pass = " + idPass, passengerRowMapper);
-        } catch (EmptyResultDataAccessException e) {
+        } catch (RuntimeException e) {
             logger.error("User not found with id " + idPass);
-            throw new RuntimeException("Error!");
+            throw new EntityNotFoundException("Error!");
         }
     }
 
     @Override
     public Optional<Passenger> findOne(Long idPass) {
-        return Optional.ofNullable(jdbcTemplate.queryForObject("select * from passengers where id_pass = " + idPass,
-                passengerRowMapper));
+        try {
+            return Optional.ofNullable(jdbcTemplate.queryForObject("select * from passengers where id_pass = " + idPass,
+                    passengerRowMapper));
+        } catch (RuntimeException e) {
+            logger.error("User not found with id " + idPass);
+            throw new EntityNotFoundException("Error!");
+        }
     }
 
     @Override

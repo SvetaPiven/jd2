@@ -1,6 +1,7 @@
 package com.avia.repository.impl;
 
 import com.avia.domain.Ticket;
+import com.avia.exceptions.EntityNotFoundException;
 import com.avia.repository.TicketRepository;
 import com.avia.repository.rowmapper.TicketRowMapper;
 import lombok.RequiredArgsConstructor;
@@ -32,13 +33,23 @@ public class TicketRepositoryJdbcTemplateImpl implements TicketRepository {
 
     @Override
     public Ticket findById(Long idTicket) {
-        return jdbcTemplate.queryForObject("select * from tickets where id_ticket = " + idTicket, ticketRowMapper);
+        try {
+            return jdbcTemplate.queryForObject("select * from tickets where id_ticket = " + idTicket, ticketRowMapper);
+        } catch (RuntimeException e) {
+            logger.error("Ticket not found with id " + idTicket);
+            throw new EntityNotFoundException("Error!");
+        }
     }
 
     @Override
     public Optional<Ticket> findOne(Long idTicket) {
-        return Optional.ofNullable(jdbcTemplate.queryForObject("select * from tickets where id_ticket = " + idTicket,
-                ticketRowMapper));
+        try {
+            return Optional.ofNullable(jdbcTemplate.queryForObject("select * from tickets where id_ticket = " + idTicket,
+                    ticketRowMapper));
+        } catch (RuntimeException e) {
+            logger.error("Ticket not found with id " + idTicket);
+            throw new EntityNotFoundException("Error!");
+        }
     }
 
     @Override
@@ -104,7 +115,7 @@ public class TicketRepositoryJdbcTemplateImpl implements TicketRepository {
     }
 
     public void findSaleTicket(Long idTicket, Float discount) {
-         jdbcTemplate.update("call sale(?, ?)", idTicket, discount);
+        jdbcTemplate.update("call sale(?, ?)", idTicket, discount);
     }
 
     public BigDecimal profitAirline(Long query) {
