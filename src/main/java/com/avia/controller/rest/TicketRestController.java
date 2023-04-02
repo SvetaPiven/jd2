@@ -1,4 +1,4 @@
-package com.avia.controller.mvc;
+package com.avia.controller.rest;
 
 import com.avia.controller.requests.TicketCreateRequest;
 import com.avia.domain.Ticket;

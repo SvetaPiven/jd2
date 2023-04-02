@@ -2,7 +2,7 @@ package com.avia.repository;
 
 import com.avia.domain.PassDoc;
 import com.avia.domain.Passenger;
-import com.avia.repository.impl.PassDocRepositoryImpl;
+import com.avia.repository.impl.PassDocRepositoryJdbsTemplateImpl;
 import com.avia.repository.impl.PassengerRepositoryJdbcTemplateImpl;
 import org.apache.log4j.Logger;
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ import java.util.List;
 class PassengerRepositoryJdbsTemplateTest {
     private static final Logger logger = Logger.getLogger(PassengerRepositoryJdbsTemplateTest.class);
     @Autowired
-    private PassDocRepositoryImpl documentPassRepository;
+    private PassDocRepositoryJdbsTemplateImpl documentPassRepository;
     @Autowired
     private PassengerRepositoryJdbcTemplateImpl passengerRepositoryJdbcTemplate;
 

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Passenger Management System</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1>Passenger Management System</h1>
+    <hr>
+    <h2>Create Passenger</h2>
+
+    <form action="#" th:action="@{/newpassenger}" th:object="${passenger}" method="POST">
+        <input type="text" th:field="*{idPass}" placeholder="Passenger idPass" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{fullName}" placeholder="Passenger fullName" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{personalId}" placeholder="Passenger personalId" class="form-control mb-4 col-4">
+
+        <button type="submit" class="btn btn-info col-2">Create Passenger
+        </button>
+    </form>
+
+    <hr>
+
+    <a th:href="@{/}"> Back to Passenger List</a>
+</div>
+</body>
+</html>
