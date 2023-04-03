@@ -2,18 +2,17 @@ package com.avia.controller.mvc;
 
 import com.avia.controller.requests.PassengerCreateRequest;
 import com.avia.domain.Passenger;
+import com.avia.repository.impl.PassengerRepositoryJdbcTemplateImpl;
 import com.avia.service.PassengerService;
 import lombok.RequiredArgsConstructor;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
@@ -22,6 +21,7 @@ public class PassengerController {
     private static final Logger log = Logger.getLogger(PassengerController.class);
 
     private final PassengerService passengerService;
+    private final PassengerRepositoryJdbcTemplateImpl passengerRepositoryJdbcTemplate;
 
     @GetMapping("/")
     public String findAllPassenger(Model model) {
@@ -56,18 +56,18 @@ public class PassengerController {
     }
 
     @PostMapping("/save")
-    public String savePassenger(@ModelAttribute("passenger") PassengerCreateRequest request) {
+    public String savePassenger(@ModelAttribute("passenger") Passenger passenger) {
 
-        passengerService.save(request);
+        passengerService.create(passenger);
 
         return "redirect:/";
     }
 
-    @DeleteMapping
-    public String deletePassenger(@ModelAttribute PassengerCreateRequest request) {
+    @GetMapping("/delete/{id}")
+    public String deletePassenger(@PathVariable(value = "id") Long id) {
 
-        passengerService.deleteById(request.getIdPass());
+        passengerRepositoryJdbcTemplate.hardDeleteById(id);
 
-        return "redirect:/passengers";
+        return "redirect:/";
     }
 }

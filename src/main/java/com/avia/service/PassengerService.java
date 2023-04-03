@@ -1,6 +1,5 @@
 package com.avia.service;
 
-import com.avia.controller.requests.PassengerCreateRequest;
 import com.avia.domain.Passenger;
 
 import java.util.List;
@@ -18,5 +17,6 @@ public interface PassengerService {
     Passenger update(Passenger object);
 
     Optional<Passenger> deleteById(Long idPass);
-    void save(PassengerCreateRequest request);
+
+    void hardDeleteById(Long idPass);
 }

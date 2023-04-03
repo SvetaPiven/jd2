@@ -7,7 +7,6 @@ import com.avia.repository.rowmapper.PassengerRowMapper;
 import lombok.RequiredArgsConstructor;
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Primary;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -103,5 +102,11 @@ public class PassengerRepositoryJdbcTemplateImpl implements PassengerRepository 
                         " from passengers " +
                         " where lower(full_name) ilike '%" + query + "%'",
                 passengerRowMapper);
+    }
+
+    @Override
+    public void hardDeleteById(Long idPass) {
+        final String sql = "delete from passengers WHERE id_pass = ?";
+        jdbcTemplate.update(sql, idPass);
     }
 }

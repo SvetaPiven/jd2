@@ -54,11 +54,7 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public void save(PassengerCreateRequest request) {
-            passengerRepository.create(Passenger.builder()
-                    .idPass(request.getIdPass())
-                    .fullName(request.getFullName())
-                    .personalId(request.getPersonalId())
-                    .build());
+    public void hardDeleteById(Long idPass) {
+
     }
 }
