@@ -17,14 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/passengers")
 public class PassengerController {
 
     private static final Logger log = Logger.getLogger(PassengerController.class);
 
     private final PassengerService passengerService;
 
-    @GetMapping()
+    @GetMapping("/")
     public String findAllPassenger(Model model) {
 
         model.addAttribute("passengers", passengerService.findAll());
@@ -49,9 +48,8 @@ public class PassengerController {
         return "update";
     }
 
-    @PostMapping("/addnew")
+    @GetMapping("/addnew")
     public String addPassenger(Model model) {
-
         model.addAttribute("passenger", new PassengerCreateRequest());
 
         return "newpassenger";

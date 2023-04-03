@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="ISO-8859-1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Passenger Management System</title>
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
           crossorigin="anonymous">
 </head>
-<body>
-<div class="container">
+<body class="bg-image"
+      style="background-image: url('https://img.freepik.com/premium-vector/travelers-seamless-pattern-people-going-with-luggage-travel-transportation-theme_667918-49.jpg?w=740');
+      height: 100vh;">
+<div class="container-fluid pt-5" align="center">
     <h1>Passenger Management System</h1>
     <hr>
     <h2>Create Passenger</h2>
 
     <form action="#" th:action="@{/save}" th:object="${passenger}" method="POST">
-        <input type="text" th:field="*{idPass}" placeholder="Passenger idPass" class="form-control mb-4 col-4">
         <input type="text" th:field="*{fullName}" placeholder="Passenger fullName" class="form-control mb-4 col-4">
         <input type="text" th:field="*{personalId}" placeholder="Passenger personalId" class="form-control mb-4 col-4">
 
-        <button type="submit" class="btn btn-info col-2">Create Passenger
-        </button>
+        <button type="submit" class="btn btn-info col-2">Create Passenger</button>
     </form>
 
     <hr>
 
     <a th:href="@{/}"> Back to Passenger List</a>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+
 </body>
 </html>
