@@ -1,5 +1,6 @@
 package com.avia.service;
 
+import com.avia.controller.requests.PassengerCreateRequest;
 import com.avia.domain.Passenger;
 import com.avia.repository.PassengerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +51,14 @@ public class PassengerServiceImpl implements PassengerService {
     @Override
     public Optional<Passenger> deleteById(Long idPass) {
         return Optional.empty();
+    }
+
+    @Override
+    public void save(PassengerCreateRequest request) {
+            passengerRepository.create(Passenger.builder()
+                    .idPass(request.getIdPass())
+                    .fullName(request.getFullName())
+                    .personalId(request.getPersonalId())
+                    .build());
     }
 }

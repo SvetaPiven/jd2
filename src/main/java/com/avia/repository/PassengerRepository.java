@@ -1,5 +1,6 @@
 package com.avia.repository;
 
+import com.avia.controller.requests.PassengerCreateRequest;
 import com.avia.domain.Passenger;
 
 import java.util.List;

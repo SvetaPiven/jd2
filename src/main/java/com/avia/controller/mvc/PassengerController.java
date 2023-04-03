@@ -37,7 +37,7 @@ public class PassengerController {
 
         model.addAttribute("passengers", passengerService.findById(id));
 
-        return "redirect:/passengers/" +id;
+        return "index";
     }
 
     @PutMapping("/show/{id}")
@@ -50,16 +50,19 @@ public class PassengerController {
     }
 
     @PostMapping("/addnew")
-    public String createPassenger(@ModelAttribute PassengerCreateRequest request, Model model) {
-        Passenger passenger = Passenger.builder()
-                .fullName(request.getFullName())
-                .personalId(request.getPersonalId())
-                .build();
-        passengerService.create(passenger);
+    public String addPassenger(Model model) {
 
-        model.addAttribute("passenger", passenger);
+        model.addAttribute("passenger", new PassengerCreateRequest());
 
         return "newpassenger";
+    }
+
+    @PostMapping("/save")
+    public String savePassenger(@ModelAttribute("passenger") PassengerCreateRequest request) {
+
+        passengerService.save(request);
+
+        return "redirect:/";
     }
 
     @DeleteMapping

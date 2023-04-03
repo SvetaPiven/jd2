@@ -14,7 +14,7 @@
     <hr>
     <h2>Create Passenger</h2>
 
-    <form action="#" th:action="@{/newpassenger}" th:object="${passenger}" method="POST">
+    <form action="#" th:action="@{/save}" th:object="${passenger}" method="POST">
         <input type="text" th:field="*{idPass}" placeholder="Passenger idPass" class="form-control mb-4 col-4">
         <input type="text" th:field="*{fullName}" placeholder="Passenger fullName" class="form-control mb-4 col-4">
         <input type="text" th:field="*{personalId}" placeholder="Passenger personalId" class="form-control mb-4 col-4">
