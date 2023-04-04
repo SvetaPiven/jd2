@@ -66,10 +66,9 @@ public class PassengerRepositoryJdbcTemplateImpl implements PassengerRepository 
 
     @Override
     public Passenger update(Passenger passenger) {
-        final String sql = "update passengers set full_name = ?, personal_id = ?, changed = ? WHERE id_pass = ?";
+        final String sql = "update passengers set full_name = ?, personal_id = ? WHERE id_pass = ?";
         jdbcTemplate.update(sql, passenger.getFullName(),
                 passenger.getPersonalId(),
-                passenger.getChanged(),
                 passenger.getIdPass());
         return findById(passenger.getIdPass());
     }

@@ -39,7 +39,7 @@
             <td th:text="${passenger.idPass}"></td>
             <td th:text="${passenger.fullName}"></td>
             <td th:text="${passenger.personalId}"></td>
-            <td> <a th:href="@{/update/{id}(id=${passenger.idPass})}" class="btn" style="color: azure; background-color: #1a9e9f">Update</a>
+            <td> <a th:href="@{/update}" class="btn" style="color: azure; background-color: #1a9e9f">Update</a>
                 <a th:href="@{/delete/{id}(id=${passenger.idPass})}" class="btn" style="color: azure; background-color: #ef4444">Delete</a>
             </td>
         </tr>

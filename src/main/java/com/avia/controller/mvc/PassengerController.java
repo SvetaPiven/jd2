@@ -10,9 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 
 @Controller
 @RequiredArgsConstructor
@@ -39,12 +39,20 @@ public class PassengerController {
         return "index";
     }
 
-    @GetMapping("/update/{id}")
-    public String updatePassenger(@PathVariable(value = "id") long id, Model model) {
+    @GetMapping("/update")
+    public String addPass(Model model) {
 
-        Passenger passenger = passengerRepositoryJdbcTemplate.findById(id);
+        model.addAttribute("passenger", new PassengerCreateRequest());
+        return "update";
+    }
 
-        model.addAttribute("passenger", passenger);
+    @PatchMapping("/update")
+    public String updatePassenger(@ModelAttribute PassengerCreateRequest request) {
+        passengerService.update(
+                Passenger.builder().
+                fullName(request.getFullName()).
+                personalId(request.getPersonalId()).
+                build());
         return "update";
     }
 
