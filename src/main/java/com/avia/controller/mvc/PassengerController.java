@@ -39,18 +39,18 @@ public class PassengerController {
         return "index";
     }
 
-    @PutMapping("/show/{id}")
+    @GetMapping("/update/{id}")
     public String updatePassenger(@PathVariable(value = "id") long id, Model model) {
 
-        Passenger passenger = passengerService.findById(id);
+        Passenger passenger = passengerRepositoryJdbcTemplate.findById(id);
 
         model.addAttribute("passenger", passenger);
         return "update";
     }
 
-    @GetMapping("/addnew")
+    @GetMapping("/create")
     public String addPassenger(Model model) {
-        model.addAttribute("passenger", new PassengerCreateRequest());
+        model.addAttribute("passenger", new Passenger());
 
         return "newpassenger";
     }
@@ -58,7 +58,7 @@ public class PassengerController {
     @PostMapping("/save")
     public String savePassenger(@ModelAttribute("passenger") Passenger passenger) {
 
-        passengerService.create(passenger);
+        passengerRepositoryJdbcTemplate.create(passenger);
 
         return "redirect:/";
     }

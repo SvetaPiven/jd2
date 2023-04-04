@@ -16,7 +16,7 @@
 
     <h1 class="text-light" style="font: 1.2em Comic Sans, cursive; text-shadow: 0px 0px 10px #721b36, 0px 0px 20px #ce1a4c, 0px 0px 30px #ff336b; font-size: xxx-large">Passenger List</h1>
 
-    <a th:href="@{/addnew}" class="shadow p-2 mb-10 rounded btn btn-lg mb-3" style="color: azure;
+    <a th:href="@{/create}" class="shadow p-2 mb-10 rounded btn btn-lg mb-3" style="color: azure;
      font: 1.2em Comic Sans, cursive; background-color: #d34589">Add Passenger</a>
 
     <a th:href="@{/{id}}" class="shadow p-2 mb-10 rounded btn btn-lg mb-3" style="color: azure;
@@ -38,7 +38,7 @@
             <td th:text="${passenger.idPass}"></td>
             <td th:text="${passenger.fullName}"></td>
             <td th:text="${passenger.personalId}"></td>
-            <td><a href="newpassenger.html" th:href="@{/show/${id}}" class="btn" style="color: azure; background-color: #1a9e9f">Update</a>
+            <td> <a th:href="@{/update/{id}(id=${passenger.idPass})}" class="btn" style="color: azure; background-color: #1a9e9f">Update</a>
                 <a th:href="@{/delete/{id}(id=${passenger.idPass})}" class="btn" style="color: azure; background-color: #ef4444">Delete</a>
             </td>
         </tr>
