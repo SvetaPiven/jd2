@@ -27,7 +27,7 @@
 
     <form action="#" th:action="@{/save}" th:object="${passenger}" method="POST">
 
-        <input type="text" th:field="*{idPass}" class="form-control mb-4 col-4" style="width:300px"/>
+        <input type="hidden" th:field="*{idPass}" class="form-control mb-4 col-4" style="width:300px"/>
 
         <input style="width:300px; font: 1.2em Comic Sans, cursive" type="text" th:field="*{fullName}" class="form-control mb-4 col-4">
 

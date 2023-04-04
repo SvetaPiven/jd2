@@ -10,9 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @Controller
 @RequiredArgsConstructor
@@ -39,20 +39,20 @@ public class PassengerController {
         return "index";
     }
 
-    @GetMapping("/update")
-    public String addPass(Model model) {
+    @PostMapping("/save")
+    public String savePassenger(@ModelAttribute("passenger") Passenger passenger) {
 
-        model.addAttribute("passenger", new PassengerCreateRequest());
-        return "update";
+        passengerService.create(passenger);
+
+        return "redirect:/";
     }
 
-    @PatchMapping("/update")
-    public String updatePassenger(@ModelAttribute PassengerCreateRequest request) {
-        passengerService.update(
-                Passenger.builder().
-                fullName(request.getFullName()).
-                personalId(request.getPersonalId()).
-                build());
+    @GetMapping("/show/{id}")
+    public String updatePassenger(@PathVariable(value = "id") long id, Model model) {
+
+        Passenger passenger = passengerService.findById(id);
+
+        model.addAttribute("passenger", passenger);
         return "update";
     }
 
@@ -61,14 +61,6 @@ public class PassengerController {
         model.addAttribute("passenger", new Passenger());
 
         return "newpassenger";
-    }
-
-    @PostMapping("/save")
-    public String savePassenger(@ModelAttribute("passenger") Passenger passenger) {
-
-        passengerRepositoryJdbcTemplate.create(passenger);
-
-        return "redirect:/";
     }
 
     @GetMapping("/delete/{id}")

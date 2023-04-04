@@ -25,7 +25,12 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Override
     public Passenger findById(Long idPass) {
-        return null;
+        Passenger pas = passengerRepository.findById(idPass);
+        return Passenger.builder()
+                .idPass(pas.getIdPass())
+                .fullName(pas.getFullName())
+                .personalId(pas.getPersonalId())
+                .build();
     }
 
     @Override
@@ -37,12 +42,12 @@ public class PassengerServiceImpl implements PassengerService {
     @Override
     public Passenger create(Passenger passenger) {
         /*Validation layer*/
-//        if (passenger.getPersonalId().length() < 14) {
-//            throw new RuntimeException("Something wrong!");
-//        }
-//        return passengerRepository.create(passenger);
-        return passenger;
+        if (passenger.getPersonalId().length() < 14) {
+            throw new RuntimeException("Something wrong!");
+        }
+        return passengerRepository.create(passenger);
     }
+
 
     @Override
     public Passenger update(Passenger object) {
