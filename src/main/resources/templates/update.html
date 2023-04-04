@@ -9,29 +9,41 @@
           integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
           crossorigin="anonymous">
 </head>
+<header>
+    <div class="container-fluid pt-5" align="center">
+        <h1 class="text-light" style="font: 1.2em Comic Sans, cursive;
+            text-shadow: 0px 0px 10px #41030a, 0px 0px 20px #8f0c0c, 0px 0px 30px #e03e51; font-size: xxx-large">
+            Passenger Management System
+        </h1>
+    </div>
+</header>
 <body class="bg-image"
       style="background-image: url('https://img.freepik.com/premium-vector/paper-planes-with-tangled-lines-seamless-pattern-repeating-abstract-background-with-paper-planes-dashed-tangled-lines_738121-1341.jpg');
       height: 100vh;">
 <div class="container-fluid pt-5" align="center">
-    <h1>Passenger Management System</h1>
-    <hr>
-    <h2>Update Passenger</h2>
+
+    <h2 class="text-light" style="font: 1.2em Comic Sans, cursive;
+    text-shadow:  0px 0px 10px #41030a, 0px 0px 20px #8f0c0c, 0px 0px 30px #e03e51; font-size: x-large">Update Passenger</h2>
 
     <form action="#" th:action="@{/save}" th:object="${passenger}" method="POST">
 
-        <input type="text" th:field="*{fullName}" class="form-control mb-4 col-4">
+        <input style="width:300px; font: 1.2em Comic Sans, cursive" type="text" th:field="*{fullName}" class="form-control mb-4 col-4">
 
-        <input type="text" th:field="*{personalId}" class="form-control mb-4 col-4">
+        <input style="width:300px; font: 1.2em Comic Sans, cursive" type="text" th:field="*{personalId}" class="form-control mb-4 col-4">
 
-        <button type="submit" class="btn btn-info col-2"> Update Passenger</button>
+        <button style="width:300px; font: 1.2em Comic Sans, cursive; color: azure;
+         background-color: #ff336b" type="submit" class="btn btn-info col-2"> Update </button>
     </form>
-
-    <hr>
-
-    <a th:href = "@{/}" > Back to Passenger List</a>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
         crossorigin="anonymous"></script>
 </body>
+<footer>
+    <div class="container-fluid pt-5" align="center">
+        <a th:href="@{/}" style="font: 1.2em Comic Sans, cursive; color: #8f2a1d;
+        text-shadow: 0px 0px 10px #ffffff, 0px 0px 20px #e02248, 0px 0px 30px #1c0000; font-size: large"> Back to
+            Passenger List</a>
+    </div>
+</footer>
 </html>
