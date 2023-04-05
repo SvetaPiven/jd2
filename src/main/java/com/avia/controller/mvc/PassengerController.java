@@ -1,6 +1,5 @@
 package com.avia.controller.mvc;
 
-import com.avia.controller.requests.PassengerCreateRequest;
 import com.avia.domain.Passenger;
 import com.avia.repository.impl.PassengerRepositoryJdbcTemplateImpl;
 import com.avia.service.PassengerService;
@@ -10,10 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequiredArgsConstructor
@@ -32,12 +30,20 @@ public class PassengerController {
         return "index";
     }
 
-    @GetMapping("/{id}")
-    public String findByIdPassenger(@PathVariable(value = "id") Long id, Model model) {
+    @GetMapping("/findbyid")
+    public String showByIdPassenger(Model model) {
 
-        model.addAttribute("passengers", passengerService.findById(id));
+        model.addAttribute("passenger", new Passenger());
 
-        return "index";
+        return "findbyid";
+    }
+
+    @PostMapping("/find")
+    public String findPassengerByID(@ModelAttribute("passenger") Passenger passenger, Model model) {
+
+        model.addAttribute("passenger", passengerService.findById(passenger.getIdPass()));
+
+        return "findbyid";
     }
 
     @PostMapping("/create")
@@ -45,10 +51,10 @@ public class PassengerController {
 
         passengerService.create(passenger);
 
-        return "redirect:/";
+        return "redirect:/index";
     }
 
-    @PostMapping ("/save")
+    @PostMapping("/save")
     public String updatePassenger(@ModelAttribute("passenger") Passenger passenger) {
 
         passengerRepositoryJdbcTemplate.update(passenger);
@@ -67,6 +73,7 @@ public class PassengerController {
 
     @GetMapping("/create")
     public String addPassenger(Model model) {
+
         model.addAttribute("passenger", new Passenger());
 
         return "newpassenger";
