@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -39,10 +40,18 @@ public class PassengerController {
         return "index";
     }
 
-    @PostMapping("/save")
+    @PostMapping("/create")
     public String savePassenger(@ModelAttribute("passenger") Passenger passenger) {
 
         passengerService.create(passenger);
+
+        return "redirect:/";
+    }
+
+    @PostMapping ("/save")
+    public String updatePassenger(@ModelAttribute("passenger") Passenger passenger) {
+
+        passengerRepositoryJdbcTemplate.update(passenger);
 
         return "redirect:/";
     }

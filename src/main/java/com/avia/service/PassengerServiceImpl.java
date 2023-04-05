@@ -50,8 +50,8 @@ public class PassengerServiceImpl implements PassengerService {
 
 
     @Override
-    public Passenger update(Passenger object) {
-        return null;
+    public Passenger update(Passenger passenger) {
+        return passenger;
     }
 
     @Override
@@ -63,4 +63,5 @@ public class PassengerServiceImpl implements PassengerService {
     public void hardDeleteById(Long idPass) {
 
     }
+
 }

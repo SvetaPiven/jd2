@@ -27,7 +27,7 @@
     text-shadow: 0px 0px 10px #032626, 0px 0px 20px #074d4d, 0px 0px 30px #078575; font-size: x-large">Create
         Passenger</h2>
 
-    <form action="#" th:action="@{/save}" th:object="${passenger}" method="POST">
+    <form action="#" th:action="@{/create}" th:object="${passenger}" method="POST">
         <input style="width:300px; font: 1.2em Comic Sans, cursive" type="text" th:field="*{fullName}" placeholder="Full name"
                class="form-control mb-4 col-4">
         <input style="width:300px; font: 1.2em Comic Sans, cursive" type="text" th:field="*{personalId}" placeholder="Personal id"
