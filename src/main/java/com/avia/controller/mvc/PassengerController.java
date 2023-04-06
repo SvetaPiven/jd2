@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 public class PassengerController {
@@ -28,6 +30,22 @@ public class PassengerController {
         model.addAttribute("passengers", passengerService.findAll());
 
         return "index";
+    }
+
+    @GetMapping("/findbysurname")
+    public String showBySurnamePassenger(Model model) {
+
+        model.addAttribute("passenger", new Passenger());
+
+        return "findbysurname";
+    }
+
+    @PostMapping("/findbysurname")
+    public String findPassengerBySurname(@ModelAttribute Passenger passenger, Model model) {
+
+        model.addAttribute("passengers", passengerRepositoryJdbcTemplate.searchPassSurname(passenger.getFullName()));
+
+        return "findbysurname";
     }
 
     @GetMapping("/findbyid")
